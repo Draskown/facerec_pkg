@@ -49,9 +49,8 @@ class ImgSubscriber(Node):
         # Recognize the face on the received image
         self.__fr.recognize_faces(current_frame)
 
-        # Get recognized face and load .json data
+        # Get recognized face
         recognized_id = self.__fr.get_user_id()
-        data = self.__fr.get_json_data()
 
         # Skip if no face has been detected or
         # If the person has recently been greeted
@@ -64,12 +63,11 @@ class ImgSubscriber(Node):
             self.__fr.create_user(current_frame)
             return
 
-        try:
-            # Greet the user
-            sys.stdout.write("Hello there, " + data[recognized_id]["name"] + "\n")
-            self.__last_greeted = recognized_id
-        except KeyError:
-            sys.stdout.write("\n")
+        # Load .json data
+        data = self.__fr.get_json_data()
+        # Greet the user
+        sys.stdout.write("Hello there, " + data[recognized_id]["name"] + "\n")
+        self.__last_greeted = recognized_id
 
 
 def main(args: list=None) -> None:    

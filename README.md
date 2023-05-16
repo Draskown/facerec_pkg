@@ -15,10 +15,11 @@ Program that does face recognition in the context of applying it to the robot as
 There are three available nodes:
 
 - `cam_pub` published the image from the web page to where the main machine translates image from its web camera.
-- `img_sub` subscribes to the specified topic and publishes the recognized user id.
-- `update_users` rewrites the `encodings.pkl` file. Use after you have added some images or updated the existing ones.
+- `img_sub` subscribes to the image topic and handles detected user id - either takes images of unknown user or greets the known
+- `upd` rewrites the `encodings.pkl` file. Use after you have added some images or updated the existing ones.
 
 ## Important notes
 
 - The images used for recognition should be divided into sub-folders which are user ids to manage the labeling easier.
+- Every time the sub-folders in your image folder are modified, the `upd` node must be called.
 - If built without `--symlink-install` the images and .pkl file will not be found so be aware that it would need additional transporting or specifying the paths.
