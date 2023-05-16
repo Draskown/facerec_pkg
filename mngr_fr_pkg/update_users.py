@@ -16,7 +16,9 @@ class UpdateUsers(Node):
 
         # Create an instance of the recognizer class
         self.__fr = FaceRecognizer(os.path.join(path, "Images"),
-                                   os.path.join(path, "encodings.pkl"))
+                                   os.path.join(path, "encodings.pkl"),
+                                   os.path.join(path, "users.json"),
+                                )
         
     def update_users(self) -> None:
        self.__fr.update_users()
