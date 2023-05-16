@@ -1,7 +1,7 @@
 from setuptools import setup
 import os
 
-package_name = "mngr_fr_pkg"
+package_name = "mngr-fr-pkg"
 
 setup(
     name=package_name,
@@ -14,16 +14,16 @@ setup(
     ],
     install_requires=[
         "setuptools",
-        "face-recognition==1.3.0",
-        "face-recognition-models==0.3.0",
-        "opencv-python==4.7.0.72",
+        # "rclpy",
+        # "std_msgs",
+        # "sensor_msgs",
     ],
     entry_points={
-        'console_scripts': [
-            'img_sub = mngr_fr_pkg.img_sub:main',
-            'cam_pub = mngr_fr_pkg.cam_pub:main',
-            'upd = mngr_fr_pkg.update_users:main',
-            'greet = mngr_fr_pkg.greet_user:main',
+        "console_scripts": [
+            "img_sub = " + package_name + ".img_sub:main",
+            "cam_pub = " + package_name + ".cam_pub:main",
+            "upd = " + package_name + ".update_users:main",
+            "greet = " + package_name + ".greet_user:main",
         ],
     },
     zip_safe=True,

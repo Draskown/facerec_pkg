@@ -42,7 +42,7 @@ class GreetUser(Node):
         # msg is None or msg.data is None or 
         if msg.data == "-2" \
               or msg.data <= "0" or self.__last_greeted == msg.data:
-            return
+            print("Unknown user")
 
         # Greet the user
         sys.stdout.write("Hello there, " + self.__data[msg.data]["name"] + "\n")

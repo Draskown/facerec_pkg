@@ -1,15 +1,15 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>mngr_fr_pkg</name>
-  <version>0.0.1</version>
+  <name>mngr-fr-pkg</name>
+  <version>0.0.2</version>
   <description>A face recognition script for the office manager robot</description>
   <maintainer email="kabalin.andrei@gmail.com">Kabalin Andrei</maintainer>
   <license>Apache License 2.0</license>
 
-  <!-- <exec_depend>face-recognition==1.3.0</exec_depend>
-  <exec_depend>face-recognition-models==0.3.0</exec_depend>
-  <exec_depend>python-opencv==4.7.0</exec_depend> -->
+  <!-- <exec_depend>rclpy</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+  <exec_depend>sensor_msgs</exec_depend> -->
 
   <export>
     <build_type>ament_python</build_type>
