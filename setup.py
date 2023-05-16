@@ -1,7 +1,7 @@
 from setuptools import setup
 import os
 
-package_name = "mngr-fr-pkg"
+package_name = "mngr_fr_pkg"
 
 setup(
     name=package_name,
