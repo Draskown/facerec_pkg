@@ -34,11 +34,13 @@ class ImgSubscriber(Node):
         self.__br = CvBridge()
 
         # Initialize the path to the data
-        path = os.path.dirname(os.path.abspath(__file__))
+        path = os.path.dirname(os.path.realpath(__file__))
 
         # Create an instance of the recognizer class
         self.__fr = FaceRecognizer(os.path.join(path, "Images"),
-                                   os.path.join(path, "encodings.pkl"))
+                                   os.path.join(path, "encodings.pkl"),
+                                   os.path.join(path, "users.json"),
+                                   )
 
     def listener_callback(self, 
                           data: Image,
