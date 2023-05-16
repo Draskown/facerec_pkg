@@ -4,7 +4,7 @@ Program that does face recognition in the context of applying it to the robot as
 
 ## Installation
 
-1. Install the mngr_facrec package from `https://github.com/Draskown/facerec_lib`
+1. Install the mngr_facrec package from https://github.com/Draskown/facerec_lib
 2. Download the archive
 3. Unzip it in your ./ros2_workspace/src
 4. Build the package `colcon build --symlink-install --packages-select mngr_fr_pkg`
