@@ -1,6 +1,4 @@
-import os
 import sys
-import json
 import rclpy
 from rclpy.node import Node
 from std_msgs.msg import String
@@ -15,20 +13,11 @@ class GreetUser(Node):
         # Create the subscriber. This subscriber will receive an String
         # from the detected_user_id topic. The queue size is 10 messages.
         _ = self.create_subscription(
-            String, 
-            "detected_user_id", 
+            String,
+            "recognized_name", 
             self.__callback, 
             10,
         )
-        
-        self.__last_greeted = None
-
-        # Initialize the path to the data
-        path = os.path.dirname(os.path.realpath(__file__))
-
-        # Load data from the json file
-        with open(os.path.join(path, "users.json")) as f:
-            self.__data = json.load(f)
 
     def __callback(self, 
                     msg: String,
@@ -36,17 +25,9 @@ class GreetUser(Node):
         """
         Callback function.
         """ 
-
-        # Skip if no face has been detected or
-        # If the person has recently been greeted
-        # msg is None or msg.data is None or 
-        if msg.data == "-2" \
-              or msg.data <= "0" or self.__last_greeted == msg.data:
-            print("Unknown user")
-
+        
         # Greet the user
-        sys.stdout.write("Hello there, " + self.__data[msg.data]["name"] + "\n")
-        self.__last_greeted = msg.data
+        sys.stdout.write("Hello there, " + msg.data + "\n")
 
 
 def main(args: list=None) -> None:

@@ -15,8 +15,17 @@ Program that does face recognition in the context of applying it to the robot as
 There are three available nodes:
 
 - `cam_pub` published the image from the web page to where the main machine translates image from its web camera.
-- `img_sub` subscribes to the image topic and handles detected user id - either takes images of unknown user or greets the known
+- `img_sub` subscribes to the image topic and handles detected user id - either takes images of unknown user or greets the known.
 - `upd` rewrites the `encodings.pkl` file. Use after you have added some images or updated the existing ones.
+
+## Use case
+
+1. Run `cam_pub` to publish images as message OR specify the different topic for passed images in `img_sub` node.
+2. Run `greet` node to start listening for the name to greet.
+3. Run `img_sub` node to start handling the image recognition.
+
+After `img_sub` finds and succesfullly recognizes the user's id, it passes the name of the user to the topic `recognized_name`.
+Node `greet` is subscribed to that topic so when the message is published, it does the greeting.
 
 ## Important notes
 

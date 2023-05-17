@@ -2,6 +2,7 @@ import os
 import sys
 import rclpy
 from rclpy.node import Node
+from std_msgs.msg import String
 from cv_bridge import CvBridge
 from sensor_msgs.msg import Image
 from mngr_facerec import FaceRecognizer
@@ -18,7 +19,15 @@ class ImgSubscriber(Node):
         _ = self.create_subscription(
             Image, 
             "frames", 
-            self.listener_callback, 
+            self.__callback, 
+            10,
+        )
+
+        # Create the publisher. This publisher will send the detected user id
+        # to the detected_user_id topic. The queue size is 10 messages.
+        self.__publisher = self.create_publisher(
+            String,
+            "recognized_name",
             10,
         )
         
@@ -37,9 +46,9 @@ class ImgSubscriber(Node):
                                    os.path.join(path, "users.json"),
                                    )
 
-    def listener_callback(self, 
-                          data: Image,
-                          ) -> None:
+    def __callback(self, 
+                   data: Image,
+                   ) -> None:
         """
         Callback function.
         """ 
@@ -64,10 +73,14 @@ class ImgSubscriber(Node):
             return
 
         # Load .json data
-        data = self.__fr.get_json_data()
+        json_data = self.__fr.get_json_data()
         # Greet the user
-        sys.stdout.write("Hello there, " + data[recognized_id]["name"] + "\n")
         self.__last_greeted = recognized_id
+
+        msg = String()
+        msg.data = json_data[recognized_id]["name"]
+
+        self.__publisher.publish(msg)
 
 
 def main(args: list=None) -> None:    
