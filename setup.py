@@ -12,12 +12,7 @@ setup(
             ["resource/" + package_name]),
         ("share/" + package_name, ["package.xml"]),
     ],
-    install_requires=[
-        "setuptools",
-        "rclpy",
-        "std_msgs",
-        "sensor_msgs",
-    ],
+    install_requires=["setuptools"],
     entry_points={
         "console_scripts": [
             "img_sub = " + package_name + ".img_sub:main",
