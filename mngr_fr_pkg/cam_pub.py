@@ -28,6 +28,7 @@ class ImagePublisher(Node):
     # Used to convert between ROS and OpenCV images
     self.br = CvBridge()
 
+    # Declare a parameter and use it in the global field
     self.declare_parameter("cam_src", "http://192.168.2.135:8000/")
     self.cam_src = self.get_parameter("cam_src")
    
