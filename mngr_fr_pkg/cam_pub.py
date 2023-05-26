@@ -8,8 +8,7 @@ class ImagePublisher(Node):
   """
   Creates an ImagePublisher class, which is a subclass of the Node class.
   """
-  def __init__(self, 
-               camera_src: str) -> None:
+  def __init__(self) -> None:
     # Initiate the Node class's constructor and give it a name
     super().__init__("cam_pub")
       
@@ -29,14 +28,15 @@ class ImagePublisher(Node):
     # Used to convert between ROS and OpenCV images
     self.br = CvBridge()
 
-    self.cam_src = camera_src
+    self.declare_parameter("cam_src", "http://192.168.2.135:8000/")
+    self.cam_src = self.get_parameter("cam_src")
    
   def timer_callback(self) -> None:
     """
     Callback function.
     This function gets called every 0.1 seconds.
     """
-    self.cap.open(self.cam_src)
+    self.cap.open(self.cam_src.value)
     
     # Capture frame-by-frame
     # This method returns True/False as well
@@ -48,6 +48,7 @@ class ImagePublisher(Node):
       # The "cv2_to_imgmsg" method converts an OpenCV
       # image to a ROS 2 image message
       self.publisher_.publish(self.br.cv2_to_imgmsg(frame))
+      print("Grabbed frame")
   
 def main(args: list=None) -> None:
   # Initialize the rclpy library
