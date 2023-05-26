@@ -6,8 +6,9 @@ Program that does face recognition in the context of applying it to the robot as
 
 1. Download the archive
 2. Unzip it in your ./ros2_workspace/src
+3. Install requirements `pip install -r requirements.txt`
 3. Build the package `colcon build --symlink-install --packages-select mngr_fr_pkg`
-4. Use one of the three nodes.
+4. Use one of the three nodes
 
 ## Face recognition class
 
