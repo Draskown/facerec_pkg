@@ -5,7 +5,7 @@ package_name = "mngr_fr_pkg"
 
 setup(
     name=package_name,
-    version="0.0.2",
+    version="0.0.3",
     packages=[package_name],
     data_files=[
         ("share/ament_index/resource_index/packages",
@@ -14,9 +14,9 @@ setup(
     ],
     install_requires=[
         "setuptools",
-        # "rclpy",
-        # "std_msgs",
-        # "sensor_msgs",
+        "rclpy",
+        "std_msgs",
+        "sensor_msgs",
     ],
     entry_points={
         "console_scripts": [

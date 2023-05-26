@@ -5,7 +5,7 @@ from rclpy.node import Node
 from std_msgs.msg import String
 from cv_bridge import CvBridge
 from sensor_msgs.msg import Image
-from mngr_facerec import FaceRecognizer
+from mngr_fr_pkg.mngr_facerec import FaceRecognizer
 
 class ImgSubscriber(Node):
     def __init__(self) -> None:
