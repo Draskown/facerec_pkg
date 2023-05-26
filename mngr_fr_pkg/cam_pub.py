@@ -8,7 +8,8 @@ class ImagePublisher(Node):
   """
   Creates an ImagePublisher class, which is a subclass of the Node class.
   """
-  def __init__(self) -> None:
+  def __init__(self, 
+               camera_src: str) -> None:
     # Initiate the Node class's constructor and give it a name
     super().__init__("cam_pub")
       
@@ -27,13 +28,15 @@ class ImagePublisher(Node):
          
     # Used to convert between ROS and OpenCV images
     self.br = CvBridge()
+
+    self.cam_src = camera_src
    
   def timer_callback(self) -> None:
     """
     Callback function.
     This function gets called every 0.1 seconds.
     """
-    self.cap.open("http://192.168.2.137:8000/")
+    self.cap.open(self.cam_src)
     
     # Capture frame-by-frame
     # This method returns True/False as well
