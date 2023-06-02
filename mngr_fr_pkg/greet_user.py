@@ -35,7 +35,7 @@ class GreetUser(Node):
         """ 
         
         # Greet the user
-        self.__speak_text("Hello there, " + msg.data)
+        self.__speak_text("Здравствуйте, " + msg.data)
 
     def __speak_text(self, text):
         """
