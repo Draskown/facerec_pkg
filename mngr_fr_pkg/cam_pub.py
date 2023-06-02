@@ -15,13 +15,10 @@ class ImagePublisher(Node):
       
     # Create the publisher. This publisher will publish an Image
     # to the video_frames topic. The queue size is 10 messages.
-    self.publisher_ = self.create_publisher(Image, "frames", 10)
+    self.publisher_ = self.create_publisher(Image, "frames", 100)
 
-    # Create the timer to publish the message ewvery 0.1 seconds
-    _ = self.create_timer(0.1, self.__timer_callback)
-         
-    # Create a VideoCapture object
-    self.cap = cv2.VideoCapture()
+    # Create the timer to publish the message 30 FPS
+    _ = self.create_timer(1/30, self.__timer_callback)
          
     # Used to convert between ROS and OpenCV images
     self.__br = CvBridge()
@@ -32,6 +29,9 @@ class ImagePublisher(Node):
     self.declare_parameter("cam_src_http", "http://192.168.2.135:8000/")
     self.__cam_src_int = self.get_parameter("cam_src_index")
     self.__cam_src_str = self.get_parameter("cam_src_http")
+
+    # Create a VideoCapture object
+    self.cap = cv2.VideoCapture(self.__check_index())
 
   def __check_index(self) -> int or str:
     """
@@ -46,9 +46,7 @@ class ImagePublisher(Node):
   def __timer_callback(self) -> None:
     """
     Callback function.
-    This function gets called every 0.1 seconds.
     """
-    self.cap.open(self.__check_index())
     
     # Capture frame-by-frame
     # This method returns True/False as well
