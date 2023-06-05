@@ -417,7 +417,7 @@ class FaceRecognizer():
                     self.__unknown_count += 1
                     # If there happens to be an unkown person
                     # In the frame for some time
-                    if self.__unknown_count >= 5:
+                    if self.__unknown_count >= 10:
                         # Set the unknown user code
                         self.__userID = "-1"
                 else:
@@ -427,7 +427,7 @@ class FaceRecognizer():
                     self.__known_count += 1
                     # If there happens to be a known person
                     # In the frame for some time
-                    if self.__known_count >= 10:
+                    if self.__known_count >= 5:
                         # Set the id of the recognized person
                         self.__userID = name
         else:

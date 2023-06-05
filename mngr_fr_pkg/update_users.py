@@ -1,7 +1,7 @@
 import os
 import rclpy
 from rclpy.node import Node
-from mngr_facerec import FaceRecognizer
+from mngr_fr_pkg.mngr_facerec import FaceRecognizer
  
 class UpdateUsers(Node):
     """
